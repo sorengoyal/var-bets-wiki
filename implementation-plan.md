@@ -28,6 +28,8 @@
 - [ ] WebSocket Gateway implemented and broadcasting:
     - `poolUpdated` when a bet is placed or pool state changes.
     - `payoutExecuted` when a pool is resolved.
+    - `simulationReset` when a reset occurs.
+- [ ] Simulate control endpoints operational (`POST /api/simulate/reset` and `POST /api/simulate/fast-forward`).
 - [ ] End-to-end flow verified: Mock Event $\rightarrow$ Backend Cron $\rightarrow$ DB Update $\rightarrow$ WS Broadcast.
 
 ## Story 4: Frontend Experience
@@ -35,6 +37,7 @@
 **Acceptance Criteria**:
 - [ ] Next.js application setup with Solana Wallet Adapter for Phantom.
 - [ ] Home Page displays active and resolved pools in real-time.
+- [ ] Debug toolbar with fast-forward (`+1m`, `+5m`) and restart simulation button, always visible.
 - [ ] Betting Modal implemented:
     - Allows selection of "Confirmed" vs "Overturned".
     - Quick-select buttons for $1, $10, $100.

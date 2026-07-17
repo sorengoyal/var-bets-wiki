@@ -88,4 +88,14 @@ General system webhooks configuration.
 - **Interval**: Every 1 minute (per active fixture).
 - **Action**: Fetch scores from TxLine $\rightarrow$ Check for `"var"` or `"var_end"`.
     - **If "var"**: Create pool record in `pools` table $\rightarrow$ Set `acceptingBets = true`.
-    - **If "var_end"**: Mark pool `acceptingBets = false` $\rightarrow$ Process winner logic $\rightarrow$ Create `payouts` records $\rightarrow$ Mark `paidOut = true`.
+    - **If "var_end"**: Mark pool `acceptingBets = false` → Process winner logic → Create `payouts` records → Mark `paidOut = true`.
+
+---
+
+## 9. Simulation Control API
+Debug endpoints for resetting and fast-forwarding the mock service clock. See [Simulate Feature](simulate-feature.md) for full design.
+
+| Endpoint | Method | Description |
+| :--- | :--- | :--- |
+| `/simulate/reset` | `POST` | Wipes DB (bets, payouts, pools, scores) + resets mock clock. Wrapped in a DB transaction. Broadcasts `simulationReset` via WebSocket. |
+| `/simulate/fast-forward` | `POST` | Advances mock clock by `{ minutes: N }`. Returns new virtual time. |

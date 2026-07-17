@@ -48,4 +48,14 @@ The service is file-driven and expects a specific directory structure:
 1.  Set `START_TIME` in `.env` to a few minutes before a "VAR" event in your JSON files.
 2.  Start the Mock Service.
 3.  Start the VAR Bets Backend.
-4.  The Backend's cron job will poll the Mock Service $\rightarrow$ The Mock Service will see the virtual time has reached the "VAR" event $\rightarrow$ Backend triggers the pool creation.
+4.  The Backend's cron job will poll the Mock Service → The Mock Service will see the virtual time has reached the "VAR" event → Backend triggers the pool creation.
+
+## Simulation Control API
+Endpoints to reset and fast-forward the virtual clock.
+
+| Endpoint | Method | Description |
+| :--- | :--- | :--- |
+| `/simulate/reset` | `POST` | Resets virtual clock to `START_TIME` from `.env`. Returns `{ currentTime }`. |
+| `/simulate/fast-forward` | `POST` | Advances virtual clock by `{ minutes: N }`. Returns `{ currentTime }`. |
+
+See [Simulate Feature](simulate-feature.md) for full architecture details.

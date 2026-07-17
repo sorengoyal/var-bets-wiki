@@ -74,3 +74,14 @@ To ensure a "live" feel during fast-paced VAR reviews, the frontend maintains a 
 - **Package Manager**: pnpm.
 - **Build System**: Turbo.
 - **API Client**: Axios or Fetch for REST calls; `socket.io-client` or native WebSockets for real-time data.
+
+## 5. Debug Toolbar (Simulation Controls)
+A fixed toolbar in the top-right header, always visible, for hackathon demo purposes.
+
+- **Virtual Clock Display**: Shows current mock service time (e.g., `⏱ 12:03:00`).
+- **Fast-Forward Buttons**: `+1m` and `+5m` buttons that call `POST /api/simulate/fast-forward`.
+- **Restart Simulation Button**: `🔄 Restart` calls `POST /api/simulate/reset`.
+    - On success, the page auto-refreshes (or clears state and re-fetches).
+    - WebSocket listener for `simulationReset` triggers refresh on all connected tabs.
+
+See [Simulate Feature](simulate-feature.md) for full architecture details.
